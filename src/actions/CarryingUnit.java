@@ -1,7 +1,6 @@
 package actions;
 
 import tile.Tile;
-import unit.Structure;
 import unit.Unit;
 
 public interface CarryingUnit

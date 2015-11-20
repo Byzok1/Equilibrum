@@ -1,14 +1,20 @@
 package ressource;
 
+import java.awt.Point;
+import java.util.ArrayList;
 
-public class Ressource
+public abstract class Ressource
 {
-	private RessourceType type;
 	private int amount;
-	private double posX, posY;
-	
-	public Ressource(double x, double y, RessourceType type, int amount)
+	/**
+	 * if the coordinates are -1, -1, it means the object isn't present in the
+	 * world (it is the case for build ressources and carried ressources)
+	 */
+	private Point pos;
+
+	public Ressource(Point point, int amount)
 	{
-		
+		this.amount = amount;
+		this.pos = point;
 	}
 }

@@ -1,7 +1,8 @@
 package unitClass;
 
-import java.util.ArrayList;
+import java.awt.Point;
 
+import controller.Controller;
 import actions.Attacking;
 import actions.CarryingRessource;
 import actions.CarryingUnit;
@@ -14,18 +15,14 @@ import ressource.Ressource;
 import tile.TerrainEntity;
 import tile.Tile;
 import unit.Mech;
-import unit.Structure;
 import unit.Unit;
+import world.World;
 
 public class Car extends Mech implements Moving, HoldingPosition, Attacking, CarryingRessource, CarryingUnit, Dying, Suiciding
 {
-
-	public Car(String name, int health, int energy, Team team, double posX,
-			double posY, Tile tilePos, ArrayList<Ressource> buildRessourceList,
-			int condition)
+	public Car(Team team, Point pos)
 	{
-		super(name, health, energy, team, posX, posY, tilePos, buildRessourceList,
-				condition);
+		super(75, 50, team, pos, Controller.getController().getWorld().getTile(pos), World.testRessList);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -65,13 +62,6 @@ public class Car extends Mech implements Moving, HoldingPosition, Attacking, Car
 	}
 
 	@Override
-	public void pickUp(Structure struct)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void dropOff()
 	{
 		// TODO Auto-generated method stub
@@ -93,13 +83,6 @@ public class Car extends Mech implements Moving, HoldingPosition, Attacking, Car
 	}
 
 	@Override
-	public void dropOff(Structure struct)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void attack(Unit unit, int damage)
 	{
 		// TODO Auto-generated method stub
@@ -114,7 +97,7 @@ public class Car extends Mech implements Moving, HoldingPosition, Attacking, Car
 	}
 
 	@Override
-	public void move(double x, double y)
+	public void move(int x, int y)
 	{
 		// TODO Auto-generated method stub
 		
@@ -139,6 +122,13 @@ public class Car extends Mech implements Moving, HoldingPosition, Attacking, Car
 	{
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public char toChar()
+	{
+		// TODO Auto-generated method stub
+		return 'C';
 	}
 
 

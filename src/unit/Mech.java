@@ -1,7 +1,9 @@
 package unit;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
+import player.Player;
 import player.Team;
 import ressource.Ressource;
 import tile.Tile;
@@ -15,37 +17,17 @@ public abstract class Mech extends Unit
 	{
 		NEW, GOOD, AVERAGE, BAD, CRITICAL, BROKEN
 	}
-	public Mech(String name, int health, int energy, Team team, double posX,
-			double posY, Tile tilePos, ArrayList<Ressource> buildRessourceList, int condition)
-	{
-		super(name, health, energy, team, posX, posY, tilePos, buildRessourceList);
-		this.conditionAmount = condition;
-		if(conditionAmount <= 100 && conditionAmount > 80)
-		{
-			this.condition = ConditionType.NEW;
-		}
-		else if(conditionAmount <= 80 && conditionAmount > 60)
-		{
-			this.condition = ConditionType.GOOD;
-		}
-		else if(conditionAmount <= 60 && conditionAmount > 40)
-		{
-			this.condition = ConditionType.AVERAGE;
-		}
-		else if(conditionAmount <= 40 && conditionAmount > 20)
-		{
-			this.condition = ConditionType.BAD;
-		}
-		else if(conditionAmount <= 20 && conditionAmount > 0)
-		{
-			this.condition = ConditionType.CRITICAL;
-		}
-		else if(conditionAmount <= 0)
-		{
-			this.condition = ConditionType.BROKEN;
-		}
-	}
+
 	
+	public Mech(int x, int y, int moveCoolDown, UnitAI ai, int health,
+			int energy, Team team, Point root,
+			Tile tile, ArrayList<Ressource> buildRessourceList)
+	{
+		super(x, y, moveCoolDown, ai, health, energy, team, root, tile,
+				buildRessourceList);
+		// TODO Auto-generated constructor stub
+	}
+
 	public ConditionType checkConditionType()
 	{
 		ConditionType cond = ConditionType.NEW;

@@ -1,24 +1,23 @@
 package unitClass;
 
-import java.util.ArrayList;
+import java.awt.Point;
 
+import controller.Controller;
 import actions.Dying;
 import actions.Healing;
 import actions.Suiciding;
 import player.Team;
-import ressource.Ressource;
-import tile.Tile;
+import tile.TerrainEntity;
 import unit.Structure;
 import unit.Unit;
+import world.World;
 
-public class MedicalStation extends Structure implements Dying, Healing, Suiciding
+public class MedicalStation extends Structure implements Dying, Healing,
+		Suiciding
 {
-
-	public MedicalStation(String name, int health, int energy, Team team,
-			double posX, double posY, Tile tilePos,
-			ArrayList<Ressource> buildRessourceList)
+	public MedicalStation(Team team, Point pos)
 	{
-		super(name, health, energy, team, posX, posY, tilePos, buildRessourceList);
+		super(0, 75, 50, team, pos, Controller.getController().getWorld().getTile(pos), World.empty);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -26,21 +25,34 @@ public class MedicalStation extends Structure implements Dying, Healing, Suicidi
 	public void suicide()
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void heal(Unit unit, int amount)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void die()
 	{
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public char toChar()
+	{
+		return 'M';
+	}
+
+	@Override
+	public char toCharSelected()
+	{
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

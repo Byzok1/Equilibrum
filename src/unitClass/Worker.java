@@ -1,7 +1,9 @@
 package unitClass;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
+import controller.Controller;
 import actions.Calming;
 import actions.CarryingRessource;
 import actions.CarryingUnit;
@@ -17,19 +19,15 @@ import tile.Tile;
 import unit.Bio;
 import unit.BioMech;
 import unit.Mech;
-import unit.Structure;
 import unit.Unit;
+import world.World;
 
 public class Worker extends BioMech implements CarryingRessource, Moving,
 		HoldingPosition, Dying, Repairing, Feeding, CarryingUnit, Calming
 {
-
-	public Worker(String name, int health, int energy, Team team, double posX,
-			double posY, Tile tilePos, ArrayList<Ressource> buildRessourceList,
-			int stress)
+	public Worker(Team team, Point pos)
 	{
-		super(name, health, energy, team, posX, posY, tilePos,
-				buildRessourceList, stress);
+		super(50, 45, team, pos, Controller.getController().getWorld().getTile(pos), World.testRessList);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -76,7 +74,7 @@ public class Worker extends BioMech implements CarryingRessource, Moving,
 	}
 
 	@Override
-	public void move(double x, double y)
+	public void move(int x, int y)
 	{
 		// TODO Auto-generated method stub
 		
@@ -118,13 +116,6 @@ public class Worker extends BioMech implements CarryingRessource, Moving,
 	}
 
 	@Override
-	public void pickUp(Structure struct)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void dropOff()
 	{
 		// TODO Auto-generated method stub
@@ -146,10 +137,10 @@ public class Worker extends BioMech implements CarryingRessource, Moving,
 	}
 
 	@Override
-	public void dropOff(Structure struct)
+	public char toChar()
 	{
 		// TODO Auto-generated method stub
-		
+		return 'W';
 	}
 
 }

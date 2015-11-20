@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"? standalone="no" ?>
+
+<!DOCTYPE world SYSTEM "world.dtd">
+<world>
+	<tile>
+		<terrain>
+			<terrainEntity>blank</terrainEntity>
+			<terrainType>land</terrainType>
+		</terrain>
+		<position>
+			<X>0</X>
+			<Y>0</Y>
+		</position>
+	</tile>
+</world>

@@ -1,20 +1,32 @@
 package player;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
+import controller.Controller;
 import unit.Unit;
+import world.World;
 
 public class Player
 {
+	private World world;
 	private ArrayList<Unit> selection;
 	private String name;
 	private Team team;
 	private boolean human;
 	private AI ai;
+	
+	public Player()
+	{
+		this.selection = new ArrayList<Unit>();
+		this.name = "Player1";
+		this.team = World.ALLY;
+		this.human = true;
+		this.ai = null;
+	}
 	public Player(ArrayList<Unit> selection, String name, Team team,
 			boolean human, AI ai)
 	{
-		super();
 		this.selection = selection;
 		this.name = name;
 		this.team = team;
@@ -23,17 +35,54 @@ public class Player
 	}
 	public void clearSelection()
 	{
-		
+		for(Unit u : selection)
+		{
+			u.setSelection(null);
+		}
+		selection.clear();
+	}
+	
+	public void unselect(Unit unit)
+	{
+		unit.setSelection(null);
+		selection.remove(unit);
 	}
 	public void select(Unit unit)
 	{
-		
+		if(!selection.contains(unit))
+		{
+			selection.add(unit);
+			unit.setSelection(this);
+		}
 	}
 	public void select(ArrayList<Unit> units)
 	{
-		
+		for(Unit u : units)
+		{
+			if(!selection.contains(u))
+			{
+				selection.add(u);
+				u.setSelection(this);
+			}
+		}
 	}
 	public void selectAll()
+	{
+		ArrayList<Unit> list = world.getUnits();
+		for(Unit u : list)
+		{
+			if(u.getTeam() == this.getTeam())
+			{
+				if(!list.contains(u))
+				{
+					selection.add(u);
+					u.setSelection(this);
+				}
+			}
+		}
+	}
+	
+	public void giveCommand(Point target)
 	{
 		
 	}
@@ -76,5 +125,13 @@ public class Player
 	public void setAi(AI ai)
 	{
 		this.ai = ai;
+	}
+	public World getWorld()
+	{
+		return world;
+	}
+	public void setWorld(World world)
+	{
+		this.world = world;
 	}
 }

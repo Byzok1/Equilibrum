@@ -1,7 +1,9 @@
 package unitClass;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
+import controller.Controller;
 import actions.Attacking;
 import actions.Calming;
 import actions.CarryingUnit;
@@ -19,18 +21,15 @@ import tile.Tile;
 import unit.Bio;
 import unit.BioMech;
 import unit.Unit;
+import world.World;
 
 public class RifleMan extends BioMech implements Moving, Attacking,
 		CarryingUnit, Calming, Dying, Feeding, Healing, HoldingPosition,
 		Sacrificing, Suiciding
 {
-
-	public RifleMan(String name, int health, int energy, Team team,
-			double posX, double posY, Tile tilePos,
-			ArrayList<Ressource> buildRessourceList, int stress)
+	public RifleMan(Team team, Point pos)
 	{
-		super(name, health, energy, team, posX, posY, tilePos,
-				buildRessourceList, stress);
+		super(100, 75, team, pos, Controller.getController().getWorld().getTile(pos), World.testRessList);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -119,7 +118,7 @@ public class RifleMan extends BioMech implements Moving, Attacking,
 	}
 
 	@Override
-	public void move(double x, double y)
+	public void move(int x, int y)
 	{
 		// TODO Auto-generated method stub
 		
@@ -144,6 +143,13 @@ public class RifleMan extends BioMech implements Moving, Attacking,
 	{
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public char toChar()
+	{
+		// TODO Auto-generated method stub
+		return 'R';
 	}
 
 }
