@@ -78,11 +78,13 @@ public class Controller implements Initializable
 
 		// generate world
 
-		world = new World(10, 10);
-		//WorldLoader.load("");
+		world = new World(10, 10, "testWorldPleaseIgnore");
 		world.startTestWorld();
 		worldRender = new Render(this, world, true);
 		root.requestFocus();
+		
+		//WorldLoader.saveWorld(world);
+		//WorldLoader.openWorld("./worlds/iamawesome");
 		
 		
 		//give an order to a duck

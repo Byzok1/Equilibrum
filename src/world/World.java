@@ -23,6 +23,10 @@ import unitClass.Duck;
 public class World
 {
 	public static ArrayList<Ressource> empty = new ArrayList<Ressource>();
+	/**
+	 * used to create the world file
+	 */
+	private String name;
 	private int dimensionX, dimensionY;
 	private ArrayList<Reciepe> reciepes;
 	private ArrayList<Tile> tiles;
@@ -35,8 +39,9 @@ public class World
 	public static ArrayList<Tile> testTiles = new ArrayList<Tile>();
 	public static Team NEUTRAL = new Team(Color.GREY), ALLY = new Team(Color.GREEN), ENNEMY = new Team(Color.RED);
 	
-	public World(int x, int y)
+	public World(int x, int y, String name)
 	{
+		this.name = name;
 		this.reciepes = new ArrayList<Reciepe>();
 		this.units = new ArrayList<Unit>();
 		this.ressources = new ArrayList<Ressource>();
@@ -55,6 +60,37 @@ public class World
 				this.tiles.add(new Tile(this, new Point(j, i)));
 			}
 		}
+	}
+
+	/**
+	 * usually will be used by the Loader to create a map once it is loaded
+	 * @param name
+	 * @param dimensionX
+	 * @param dimensionY
+	 * @param reciepes
+	 * @param tiles
+	 * @param units
+	 * @param ressources
+	 * @param players
+	 * @param teams
+	 * @param triggers
+	 */
+	public World(String name, int dimensionX, int dimensionY,
+			ArrayList<Reciepe> reciepes, ArrayList<Tile> tiles,
+			ArrayList<Unit> units, ArrayList<Ressource> ressources,
+			ArrayList<Player> players, ArrayList<Team> teams,
+			ArrayList<Trigger> triggers)
+	{
+		this.name = name;
+		this.dimensionX = dimensionX;
+		this.dimensionY = dimensionY;
+		this.reciepes = reciepes;
+		this.tiles = tiles;
+		this.units = units;
+		this.ressources = ressources;
+		this.players = players;
+		this.teams = teams;
+		this.triggers = triggers;
 	}
 
 	public void startTestWorld()
@@ -314,5 +350,15 @@ public class World
 	public void setReciepes(ArrayList<Reciepe> reciepes)
 	{
 		this.reciepes = reciepes;
+	}
+
+	public String getName()
+	{
+		return name;
+	}
+
+	public void setName(String name)
+	{
+		this.name = name;
 	}
 }
